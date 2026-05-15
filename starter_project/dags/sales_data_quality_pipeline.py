@@ -15,9 +15,12 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.append(str(PROJECT_ROOT))
 
 
+from src.config import AIRFLOW_INPUT_FILE, SUMMARY_FILE
+from src.validation import run_lab_check
+
+
 def validate_orders_task() -> dict:
     """
-    TODO:
     1. Import config values.
     2. Read the input CSV.
     3. Validate the rows.
@@ -25,7 +28,10 @@ def validate_orders_task() -> dict:
     5. Send the Discord alert.
     6. Raise an error on failed validation.
     """
-    raise NotImplementedError
+    return run_lab_check(
+        input_path=AIRFLOW_INPUT_FILE,
+        output_path=SUMMARY_FILE,
+    )
 
 
 if DAG is not None:
